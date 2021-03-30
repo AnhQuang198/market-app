@@ -1,0 +1,8 @@
+.text-login-hover {
+    color: #5e72e4;
+}
+
+.text-login-hover:hover {
+    color: #233dd2;
+    text-decoration: none;
+}
