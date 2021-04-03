@@ -1,4 +1,4 @@
-export const SERVER_URL = "http://192.168.1.42:8888";
+export const SERVER_URL = "http://localhost:8888";
 
 const axios = require('axios');
 
@@ -64,5 +64,21 @@ export const API = {
       },
       data: JSON.stringify(data)
     })
+  }
+}
+
+export const validUsername = (checkingText) => {
+  const regexp = "/^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/";
+  const checkingResult = regexp.exec(checkingText);
+  if (checkingResult !== null) {
+    return {
+      isInputValid: true,
+      errorMessage: ''
+    };
+  } else {
+    return {
+      isInputValid: false,
+      errorMessage: 'Số điện thoại phải có 10 - 11 chữ số.'
+    };
   }
 }

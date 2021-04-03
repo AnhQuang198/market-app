@@ -40,8 +40,8 @@ class ForgotPassword extends Component {
                                             <small>Vui lòng nhập email đã đăng ký với hệ thống</small>
                                         </div>
                                         <Form role="form">
-                                            <FormGroup className="mb-3">
-                                                <InputGroup className="input-group-alternative">
+                                            <FormGroup>
+                                                <InputGroup>
                                                     <InputGroupAddon addonType="prepend">
                                                         <InputGroupText>
                                                             <i className="ni ni-email-83" />

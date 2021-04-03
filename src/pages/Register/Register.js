@@ -14,7 +14,9 @@ import {
     Input,
     InputGroupAddon,
     InputGroupText,
-    InputGroup
+    InputGroup,
+    FormFeedback,
+    Label
 } from "reactstrap";
 import "./Register.css";
 import RegisterVerify from '../Verify/RegisterVerify';
@@ -44,6 +46,7 @@ class Register extends Component {
             this.setState({
                 isRedirect: true
             })
+
         } catch (error) {
             console.log(error);
         }
@@ -64,7 +67,7 @@ class Register extends Component {
 
     render() {
         if (this.state.isRedirect) {
-            return <RegisterVerify email={this.state.username}/>
+            return <RegisterVerify email={this.state.username} />
         } else return (
             <div className="main-content">
                 <div className="header bg-gradient-info py-7">
@@ -128,19 +131,19 @@ class Register extends Component {
                                         <div className="text-center text-muted mb-4">
                                             <small>Or sign up with credentials</small>
                                         </div>
-                                        <Form role="form">
-                                            <FormGroup>
-                                                <InputGroup className="input-group-alternative mb-3">
+                                        <Form>
+                                            <FormGroup className="mb-3">
+                                                <InputGroup>
                                                     <InputGroupAddon addonType="prepend">
                                                         <InputGroupText>
                                                             <i className="ni ni-hat-3" />
                                                         </InputGroupText>
                                                     </InputGroupAddon>
-                                                    <Input required value={this.state.name} onChange={(e) => this.handleChangeName(e)} placeholder="Name" type="text" />
+                                                    <Input value={this.state.name} onChange={(e) => this.handleChangeName(e)} placeholder="Name" type="text" />
                                                 </InputGroup>
                                             </FormGroup>
-                                            <FormGroup>
-                                                <InputGroup className="input-group-alternative mb-3">
+                                            <FormGroup className="mb-3">
+                                                <InputGroup>
                                                     <InputGroupAddon addonType="prepend">
                                                         <InputGroupText>
                                                             <i className="ni ni-email-83" />
@@ -152,12 +155,11 @@ class Register extends Component {
                                                         placeholder="Email"
                                                         type="email"
                                                         autoComplete="new-email"
-                                                        required
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
                                             <FormGroup>
-                                                <InputGroup className="input-group-alternative">
+                                                <InputGroup>
                                                     <InputGroupAddon addonType="prepend">
                                                         <InputGroupText>
                                                             <i className="ni ni-lock-circle-open" />
@@ -169,7 +171,6 @@ class Register extends Component {
                                                         placeholder="Password"
                                                         type="password"
                                                         autoComplete="new-password"
-                                                        required
                                                     />
                                                 </InputGroup>
                                             </FormGroup>

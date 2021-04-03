@@ -13,10 +13,38 @@ import {
     InputGroupText,
     InputGroup
 } from "reactstrap";
+import "./RegisterVerify.css"
+import {API} from "../../Base";
 
 class RegisterVerify extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            count: 0,
+            isShow: false,
+            otpDTO: {
+                email: this.props.email,
+                optType: 'REGISTER'
+            }
+        }
+    }
+
+    sendOtpRegister = () => {
+        var counter = 15;
+        this.sendOtpSever();
+        const countDown = setInterval(() => {
+            counter--
+            this.setState({count: counter, isShow: true})
+            if (counter === 0) {
+                clearInterval(countDown)
+                this.setState({isShow: false})
+            }
+        }, 1000)
+    }
+
+    sendOtpSever () {
+        const requestUrl = "/v1/auth/send-otp";
+        API.nonAuthorizedPOST(requestUrl, this.state.otpDTO);
     }
 
     render() {
@@ -51,14 +79,15 @@ class RegisterVerify extends Component {
                                                         </InputGroupText>
                                                     </InputGroupAddon>
                                                     <Input
-                                                        placeholder="Mã OTP"
+                                                        placeholder="Mã xác minh"
                                                         autoComplete="new-email"
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
-                                            <div className="text-right">
-                                                <Button className="my-4" color="primary" type="button">
+                                            <div className="text-center">
+                                                <Button className="my-4" disabled={this.state.isShow} color="primary" type="button" onClick={this.sendOtpRegister}>
                                                     Gửi lại
+                                                    {this.state.count > 0 && <span> ({this.state.count})</span>}
                                                 </Button>
                                                 <Button className="my-4" color="primary" type="button">
                                                     Xác minh

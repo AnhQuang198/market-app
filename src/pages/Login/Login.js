@@ -82,9 +82,9 @@ class Login extends Component {
                                         <div className="text-center text-muted mb-4">
                                             <small>Or sign in with credentials</small>
                                         </div>
-                                        <Form role="form">
+                                        <Form>
                                             <FormGroup className="mb-3">
-                                                <InputGroup className="input-group-alternative">
+                                                <InputGroup>
                                                     <InputGroupAddon addonType="prepend">
                                                         <InputGroupText>
                                                             <i className="ni ni-email-83" />
@@ -98,7 +98,7 @@ class Login extends Component {
                                                 </InputGroup>
                                             </FormGroup>
                                             <FormGroup>
-                                                <InputGroup className="input-group-alternative">
+                                                <InputGroup>
                                                     <InputGroupAddon addonType="prepend">
                                                         <InputGroupText>
                                                             <i className="ni ni-lock-circle-open" />
