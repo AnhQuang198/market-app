@@ -78,7 +78,11 @@ export const validUsername = (checkingText) => {
   } else {
     return {
       isInputValid: false,
-      errorMessage: 'Số điện thoại phải có 10 - 11 chữ số.'
+      errorMessage: 'Email không đúng định dạng.'
     };
   }
+}
+
+export const validName = (checkingText) => {
+  
 }
