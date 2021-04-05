@@ -46,7 +46,6 @@ class Register extends Component {
             this.setState({
                 isRedirect: true
             })
-
         } catch (error) {
             console.log(error);
         }

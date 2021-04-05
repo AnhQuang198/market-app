@@ -66,23 +66,3 @@ export const API = {
     })
   }
 }
-
-export const validUsername = (checkingText) => {
-  const regexp = "/^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/";
-  const checkingResult = regexp.exec(checkingText);
-  if (checkingResult !== null) {
-    return {
-      isInputValid: true,
-      errorMessage: ''
-    };
-  } else {
-    return {
-      isInputValid: false,
-      errorMessage: 'Email không đúng định dạng.'
-    };
-  }
-}
-
-export const validName = (checkingText) => {
-  
-}

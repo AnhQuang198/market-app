@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { API } from '../../Base';
 import {
     Container,
     Row,
@@ -14,8 +15,29 @@ import {
     InputGroupText,
     InputGroup
 } from "reactstrap";
+import './ForgotPass.css';
 
 class ForgotPassword extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            email: ''
+        }
+    }
+
+    sendOtp = () => {
+        const requestUrl = "/v1/auth/send-otp"
+        const data = {
+            email: this.state.email,
+            type: 'FORGOT'
+        }
+        API.nonAuthorizedPOST(requestUrl,data);
+    }
+
+    handleChangeEmail(event) {
+        this.setState({ email: event.target.value });
+    }
+
     render() {
         return (
             <div className="main-content">
@@ -51,16 +73,18 @@ class ForgotPassword extends Component {
                                                         placeholder="Email"
                                                         type="email"
                                                         autoComplete="new-email"
+                                                        value={this.state.email}
+                                                        onChange={(e) => this.handleChangeEmail(e)}
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
                                             <div className="text-right">
-                                                <Button className="my-4" color="primary" type="button">
+                                                <Button className="my-4 a-whilte" color="primary" type="button">
                                                     <Link to="/login">
                                                         Quay lại
                                                     </Link>
                                                 </Button>
-                                                <Button className="my-4" color="primary" type="button">
+                                                <Button className="my-4" color="primary" type="button" onClick={this.sendOtp}>
                                                     Tiếp tục
                                                 </Button>
                                             </div>

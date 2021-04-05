@@ -24,9 +24,19 @@ class RegisterVerify extends Component {
             isShow: false,
             otpDTO: {
                 email: this.props.email,
-                optType: 'REGISTER'
-            }
+                type: 'REGISTER'
+            },
+            otp: ''
         }
+    }
+
+    verifyOtp = () => {
+        const requestUrl = "/v1/auth/verify-otp";
+        const data = {
+            email: this.props.email,
+            otp: this.state.otp
+        }
+        API.nonAuthorizedPOST(requestUrl, data);
     }
 
     sendOtpRegister = () => {
@@ -45,6 +55,10 @@ class RegisterVerify extends Component {
     sendOtpSever () {
         const requestUrl = "/v1/auth/send-otp";
         API.nonAuthorizedPOST(requestUrl, this.state.otpDTO);
+    }
+
+    handleChangeOtp(event) {
+        this.setState({ otp: event.target.value });
     }
 
     render() {
@@ -81,6 +95,8 @@ class RegisterVerify extends Component {
                                                     <Input
                                                         placeholder="Mã xác minh"
                                                         autoComplete="new-email"
+                                                        value={this.state.otp}
+                                                        onChange={(e) => this.handleChangeOtp(e)}
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
@@ -89,7 +105,7 @@ class RegisterVerify extends Component {
                                                     Gửi lại
                                                     {this.state.count > 0 && <span> ({this.state.count})</span>}
                                                 </Button>
-                                                <Button className="my-4" color="primary" type="button">
+                                                <Button className="my-4" color="primary" type="button" onClick={this.verifyOtp}>
                                                     Xác minh
                                                 </Button>
                                             </div>
