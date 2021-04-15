@@ -14,9 +14,7 @@ import {
     Input,
     InputGroupAddon,
     InputGroupText,
-    InputGroup,
-    FormFeedback,
-    Label
+    InputGroup
 } from "reactstrap";
 import "./Register.css";
 import RegisterVerify from '../Verify/RegisterVerify';
@@ -51,16 +49,16 @@ class Register extends Component {
         }
     }
 
-    handleChangeName(event) {
-        this.setState({ name: event.target.value });
+    handleChangeName = (e) => {
+        this.setState({ name: e.target.value });
     }
 
-    handleChangeUsername(event) {
-        this.setState({ username: event.target.value });
+    handleChangeUsername = (e) => {
+        this.setState({ username: e.target.value });
     }
 
-    handleChangePassword(event) {
-        this.setState({ password: event.target.value });
+    handleChangePassword = (e) => {
+        this.setState({ password: e.target.value });
     }
 
 
@@ -138,7 +136,7 @@ class Register extends Component {
                                                             <i className="ni ni-hat-3" />
                                                         </InputGroupText>
                                                     </InputGroupAddon>
-                                                    <Input value={this.state.name} onChange={(e) => this.handleChangeName(e)} placeholder="Name" type="text" />
+                                                    <Input value={this.state.name} onChange={this.handleChangeName} placeholder="Name" type="text" />
                                                 </InputGroup>
                                             </FormGroup>
                                             <FormGroup className="mb-3">
@@ -150,7 +148,7 @@ class Register extends Component {
                                                     </InputGroupAddon>
                                                     <Input
                                                         value={this.state.username}
-                                                        onChange={(e) => this.handleChangeUsername(e)}
+                                                        onChange={this.handleChangeUsername}
                                                         placeholder="Email"
                                                         type="email"
                                                         autoComplete="new-email"
@@ -166,7 +164,7 @@ class Register extends Component {
                                                     </InputGroupAddon>
                                                     <Input
                                                         value={this.state.password}
-                                                        onChange={(e) => this.handleChangePassword(e)}
+                                                        onChange={this.handleChangePassword}
                                                         placeholder="Password"
                                                         type="password"
                                                         autoComplete="new-password"

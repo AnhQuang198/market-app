@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import "./Login.css"
+import { API } from '../../Base';
 import {
     Container,
     Row,
@@ -18,6 +19,35 @@ import {
 } from "reactstrap";
 
 class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
+
+    login = () => {
+        try {
+            const data = {
+                username : this.state.email,
+                password : this.state.password
+            }
+            const reqUrl = "/v1/auth/login";
+            API.nonAuthorizedPOST(reqUrl, data);
+        }catch(e){
+            console.log(e);
+        }
+    }
+
+    handleChangeEmail(event) {
+        this.setState({ email: event.target.value });
+    }
+
+    handleChangePassword(event) {
+        this.setState({ password: event.target.value });
+    }
+
     render() {
         return (
             <div className="main-content">
@@ -94,6 +124,8 @@ class Login extends Component {
                                                         placeholder="Email"
                                                         type="email"
                                                         autoComplete="new-email"
+                                                        value={this.state.email}
+                                                        onChange={e => this.handleChangeEmail(e)}
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
@@ -108,6 +140,8 @@ class Login extends Component {
                                                         placeholder="Password"
                                                         type="password"
                                                         autoComplete="new-password"
+                                                        value={this.state.password}
+                                                        onChange={e => this.handleChangePassword(e)}
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
@@ -125,7 +159,7 @@ class Login extends Component {
                                                 </label>
                                             </div>
                                             <div className="text-center">
-                                                <Button className="my-4" color="primary" type="button">
+                                                <Button className="my-4" color="primary" type="button" onClick={this.login}>
                                                     Sign in
                                                 </Button>
                                             </div>
