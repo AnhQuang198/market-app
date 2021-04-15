@@ -1,3 +1,9 @@
-my-4 {
+.btn-otp {
     width: 122px;
+}
+
+.text-center-group {
+    margin-top: 40px;
+    text-align: center;
+    align-items: center;
 }

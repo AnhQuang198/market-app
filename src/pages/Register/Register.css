@@ -6,3 +6,7 @@
     color: #233dd2;
     text-decoration: none;
 }
+
+.btn-register {
+    width: auto !important;
+}

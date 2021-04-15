@@ -196,7 +196,7 @@ class Register extends Component {
                                                 </Col>
                                             </Row>
                                             <div className="text-center">
-                                                <Button className="mt-4" color="primary" type="button" onClick={this.register}>
+                                                <Button className="mt-4 btn-register" color="primary" type="button" onClick={this.register}>
                                                     Create account
                                                 </Button>
                                             </div>

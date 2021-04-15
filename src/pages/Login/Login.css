@@ -2,3 +2,24 @@
     background-color: rgb(23, 43, 77);
 }
 
+.main-content {
+    height: 946px;
+}
+
+.header {
+    height: 37%;
+}
+
+.under-background {
+    height: 80%;
+}
+
+@media all and (max-width: 1400px) {
+    .btn {
+        width: auto;
+    }
+    .main-content {
+        height: auto;
+    }
+}
+

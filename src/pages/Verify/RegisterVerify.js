@@ -100,12 +100,12 @@ class RegisterVerify extends Component {
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
-                                            <div className="text-center">
-                                                <Button className="my-4" disabled={this.state.isShow} color="primary" type="button" onClick={this.sendOtpRegister}>
+                                            <div className="text-center-group">
+                                                <Button className="btn-otp" disabled={this.state.isShow} color="primary" type="button" onClick={this.sendOtpRegister}>
                                                     Gửi lại
                                                     {this.state.count > 0 && <span> ({this.state.count})</span>}
                                                 </Button>
-                                                <Button className="my-4" color="primary" type="button" onClick={this.verifyOtp}>
+                                                <Button className="btn-otp" color="primary" type="button" onClick={this.verifyOtp}>
                                                     Xác minh
                                                 </Button>
                                             </div>
