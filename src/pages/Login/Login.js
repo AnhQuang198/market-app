@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import "./Login.css"
-import { API } from '../../Base';
+import { nonAuthorizedPOST, saveTokenAuth } from '../../Base';
 import {
     Container,
     Row,
@@ -27,24 +27,28 @@ class Login extends Component {
         }
     }
 
-    login = () => {
+    login = async () => {
         try {
             const data = {
                 username : this.state.email,
                 password : this.state.password
             }
             const reqUrl = "/v1/auth/login";
-            API.nonAuthorizedPOST(reqUrl, data);
+            const result = await nonAuthorizedPOST(reqUrl, data);
+            console.log(result);
+            if (result.status === 200) {
+                saveTokenAuth(result.data.token, result.data.refreshToken);
+            }
         }catch(e){
             console.log(e);
         }
     }
 
-    handleChangeEmail(event) {
+    handleChangeEmail = (event) => {
         this.setState({ email: event.target.value });
     }
 
-    handleChangePassword(event) {
+    handleChangePassword = (event) => {
         this.setState({ password: event.target.value });
     }
 
@@ -125,7 +129,7 @@ class Login extends Component {
                                                         type="email"
                                                         autoComplete="new-email"
                                                         value={this.state.email}
-                                                        onChange={e => this.handleChangeEmail(e)}
+                                                        onChange={this.handleChangeEmail}
                                                     />
                                                 </InputGroup>
                                             </FormGroup>
@@ -141,7 +145,7 @@ class Login extends Component {
                                                         type="password"
                                                         autoComplete="new-password"
                                                         value={this.state.password}
-                                                        onChange={e => this.handleChangePassword(e)}
+                                                        onChange={this.handleChangePassword}
                                                     />
                                                 </InputGroup>
                                             </FormGroup>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { API } from '../../Base';
+import { nonAuthorizedPOST } from '../../Base';
 import {
     Container,
     Row,
@@ -31,7 +31,7 @@ class ForgotPassword extends Component {
             email: this.state.email,
             type: 'FORGOT'
         }
-        API.nonAuthorizedPOST(requestUrl,data);
+        nonAuthorizedPOST(requestUrl,data);
     }
 
     handleChangeEmail(event) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { API } from '../../Base';
+import { nonAuthorizedPOST } from '../../Base';
 import {
     Container,
     Row,
@@ -18,8 +18,6 @@ import {
 } from "reactstrap";
 import "./Register.css";
 import RegisterVerify from '../Verify/RegisterVerify';
-
-
 
 class Register extends Component {
     constructor(props) {
@@ -40,10 +38,12 @@ class Register extends Component {
                 "password": this.state.password
             }
             const requestUrl = "/v1/auth/register";
-            API.nonAuthorizedPOST(requestUrl, data);
-            this.setState({
-                isRedirect: true
-            })
+            const result = nonAuthorizedPOST(requestUrl, data);
+            if (result.status === 200) {
+                this.setState({
+                    isRedirect: true
+                })
+            }
         } catch (error) {
             console.log(error);
         }
@@ -60,7 +60,6 @@ class Register extends Component {
     handleChangePassword = (e) => {
         this.setState({ password: e.target.value });
     }
-
 
     render() {
         if (this.state.isRedirect) {
